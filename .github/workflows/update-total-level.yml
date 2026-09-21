@@ -18,12 +18,14 @@ jobs:
       - run: pip install requests
 
       - run: |
-          for i in $(seq 1 60); do
+          for i in $(seq 1 12); do
             python update_total_level.py
-            sleep 58
+            sleep 290
           done
         env:
-          WOM_GROUP_ID: ${{ secrets.WOM_GROUP_ID }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+          DISCORD_XP_CHANNEL_ID: "1551663314235433070"
+          PLAYER_NAMES: "GIM Old Marc,GIM KevZMan,GokuMango, GIM Old Joyu"
           NAME_TEMPLATE: "📊┃Total Level: {total:,}"
+          XP_TEMPLATE: "📊┃Total XP: {xp:,}"
