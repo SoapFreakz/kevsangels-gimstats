@@ -66,22 +66,14 @@ def get_group_stats(cfg):
 GIM_VIEW_URL = "https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/view-group"
 
 def get_group_rank(cfg):
-    target = f"https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/?groupName={cfg['group_name'].replace(' ', '+')}&groupSize=4"
     resp = requests.get(
-        f"https://api.allorigins.win/raw?url={target}",
+        "https://kevs-angels-gim-rank.soapemon.workers.dev/",
         timeout=15,
     )
-    if resp.status_code == 403:
-        print("  Rank lookup blocked (403), skipping.")
+    if resp.status_code != 200 or resp.text == "not found":
+        print("  Could not fetch rank (skipped)")
         return None
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
-    highlight = soup.find("tr", class_="uc-scroll__table-row--type-highlight")
-    if not highlight:
-        print("  Could not find group in hiscores page (skipped)")
-        return None
-    rank_cell = highlight.find("td")
-    rank = int(rank_cell.text.strip().replace(",", ""))
+    rank = int(resp.text.strip())
     print(f"  Group rank: {rank:,}")
     return rank
 
