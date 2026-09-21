@@ -17,7 +17,11 @@ jobs:
 
       - run: pip install requests
 
-      - run: python update_total_level.py
+      - run: |
+          for i in $(seq 1 60); do
+            python update_total_level.py
+            sleep 58
+          done
         env:
           WOM_GROUP_ID: ${{ secrets.WOM_GROUP_ID }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
