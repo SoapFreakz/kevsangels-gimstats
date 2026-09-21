@@ -63,13 +63,18 @@ def get_group_stats(cfg):
     return total_level, total_xp
 
 
+GIM_VIEW_URL = "https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/view-group"
+
 def get_group_rank(cfg):
     resp = requests.get(
-        GIM_URL,
-        params={"groupName": cfg["group_name"]},
+        "https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/",
+        params={"groupName": cfg["group_name"], "groupSize": 4},
         headers=HEADERS,
         timeout=10,
     )
+    if resp.status_code == 403:
+        print("  Rank lookup blocked (403), skipping.")
+        return None
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
     highlight = soup.find("tr", class_="uc-scroll__table-row--type-highlight")
