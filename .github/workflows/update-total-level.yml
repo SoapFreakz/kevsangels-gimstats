@@ -28,7 +28,7 @@ jobs:
           DISCORD_XP_CHANNEL_ID: "1551663314235433070"
           DISCORD_RANK_CHANNEL_ID: "1551666092634669136"
           GROUP_NAME: "Kevs Angels"
-          PLAYER_NAMES: "GIM Old Marc,GIM KevZMan,GokuMango, GIM Old Joyu"
+          PLAYER_NAMES: "GIM Old Marc,GIM KevZMan,GokuMango, GIM Old Joyu, GIM Mystikz"
           NAME_TEMPLATE: "📊┃Total Level: {total:,}"
           XP_TEMPLATE: "📊┃Total XP: {xp:,}"
           RANK_TEMPLATE: "📊┃GIM Rank: #{rank:,}"
