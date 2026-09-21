@@ -66,11 +66,10 @@ def get_group_stats(cfg):
 GIM_VIEW_URL = "https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/view-group"
 
 def get_group_rank(cfg):
+    target = f"https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/?groupName={cfg['group_name'].replace(' ', '+')}&groupSize=4"
     resp = requests.get(
-        "https://secure.runescape.com/m=hiscore_oldschool_ironman/group-ironman/",
-        params={"groupName": cfg["group_name"], "groupSize": 4},
-        headers=HEADERS,
-        timeout=10,
+        f"https://api.allorigins.win/raw?url={target}",
+        timeout=15,
     )
     if resp.status_code == 403:
         print("  Rank lookup blocked (403), skipping.")
