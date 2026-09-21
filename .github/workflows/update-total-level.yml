@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests
+      - run: pip install requests beautifulsoup4
 
       - run: |
           for i in $(seq 1 12); do
@@ -26,6 +26,9 @@ jobs:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
           DISCORD_XP_CHANNEL_ID: "1551663314235433070"
+          DISCORD_RANK_CHANNEL_ID: "1551666092634669136"
+          GROUP_NAME: "Kevs Angels"
           PLAYER_NAMES: "GIM Old Marc,GIM KevZMan,GokuMango, GIM Old Joyu"
           NAME_TEMPLATE: "📊┃Total Level: {total:,}"
           XP_TEMPLATE: "📊┃Total XP: {xp:,}"
+          RANK_TEMPLATE: "📊┃GIM Rank: #{rank:,}"
